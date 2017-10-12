@@ -4,17 +4,12 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import AppRouter from './router';
-//login reducer
-import { reducer as loginReducer} from './login';
-//register reducer
-import { reducer as registerReducer} from './register';
+import reducers from './reducers';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
 const store = createStore(combineReducers({
-  //...reducers,
-  login:loginReducer,
-  register:registerReducer,
+  ...reducers,
   router: routerReducer
 }),
 applyMiddleware(middleware)

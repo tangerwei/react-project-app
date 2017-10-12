@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Link,Redirect} from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-//import * as Actions from './actions';
 import {push} from 'react-router-redux';
 const FormItem = Form.Item;
 

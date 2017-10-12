@@ -33,3 +33,28 @@
     box-shadow: 0 0 25px #cac6c6;
 }
 /* Home page */
+#Home{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+#Home .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+  
+  #Home .trigger:hover {
+    color: #108ee9;
+  }
+  
+  #Home .logo {
+    height: 32px;
+    background: #333;
+    border-radius: 6px;
+    margin: 16px;
+  }

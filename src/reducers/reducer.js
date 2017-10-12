@@ -1,4 +1,8 @@
-import {tomatoReducer} from '../twm';
+import {reducer as loginReducer} from '../login';
+import {reducer as registerReducer} from '../register';
+import {reducer as siderReducer} from '../sider';
 export default {
-    twm:tomatoReducer
+    login:loginReducer,
+    register:registerReducer,
+    sider:siderReducer
 }

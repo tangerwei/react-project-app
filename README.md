@@ -7,3 +7,7 @@
 ### npm install
 ### npm start
 * 本地3000端口
+
+react + redux + react-router 4.2 + antd
+---------------------------------------
+

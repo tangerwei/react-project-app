@@ -1,8 +1,9 @@
-import React,{Component} from 'react';
-import {connect} from 'react-redux';
-import {Link,Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import {push} from 'react-router-redux';
+import { push } from 'react-router-redux';
+import * as Actions from './actions';
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component {
@@ -10,7 +11,8 @@ class NormalLoginForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.onLogin(values);
+        this.props.addUser(values);
+        this.props.onLogin();
       }
     });
   }
@@ -21,16 +23,18 @@ class NormalLoginForm extends Component {
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }],
+            initialValue: this.props.user.userName,
           })(
             <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
-          )}
+            )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
+            initialValue: this.props.user.password,
           })(
             <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
-          )}
+            )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('remember', {
@@ -38,7 +42,7 @@ class NormalLoginForm extends Component {
             initialValue: true,
           })(
             <Checkbox>Remember me</Checkbox>
-          )}
+            )}
           <a className="login-form-forgot" href="">Forgot password</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
@@ -52,31 +56,28 @@ class NormalLoginForm extends Component {
 
 const LForm = Form.create()(NormalLoginForm);
 
-const Login = function(props){
-    const {isLogin} = props;
-    if(isLogin === true){
-        console.log(props);
-        return <Redirect to="/Home" />
-    }else{
-        return <LForm {...props} />
-    }
+const Login = function (props) {
+  return <div><LForm {...props} />
+  </div>
 };
 
-function mapStateToProps(state,ownprops){
-    const {login,location={}} = state;
-    return {
-        isLogin:login.isLogin||false,
-        location
-    };
+function mapStateToProps(state, ownprops) {
+  const { login, location = {} } = state;
+  return {
+    location,
+    user: login.user || {}
+  };
 }
 
-function mapDispatchTOProps(dispatch,ownprops){
-    return{
-        onLogin:(user)=>{
-            //dispatch(Actions.onlogin(user));
-            dispatch(push("/Home"));
-        }
+function mapDispatchTOProps(dispatch, ownprops) {
+  return {
+    onLogin: () => {
+      dispatch(push("/Home/picture"));
+    },
+    addUser: (user) => {
+      dispatch(Actions.onlogin(user));
     }
+  }
 }
 
-export default connect(mapStateToProps,mapDispatchTOProps)(Login);
+export default connect(mapStateToProps, mapDispatchTOProps)(Login);

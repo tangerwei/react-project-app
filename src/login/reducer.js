@@ -2,7 +2,8 @@ import * as actionTypes from './actionTypes';
 
 const initState = {
     user:{
-
+        userName:"admin",
+        password:"123"
     }
 }
 

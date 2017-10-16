@@ -38,6 +38,7 @@ class Pictures extends Component {
     render() {
         const { pictures } = this.state;
         return (<div>
+            <h1>本模块是异步加载</h1>
             {pictures.map((t, i) => (
                 <Picture {...t} key={i} />
             ))}
